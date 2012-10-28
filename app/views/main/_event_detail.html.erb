@@ -1,0 +1,22 @@
+<div data-role="page" id="detail">
+	<div data-role="header">
+		<h1>Event Details</h1>
+	</div>
+
+	<div data-role="content">
+		<h1 id="event_title">[put event here]</h1>
+		<div class="ui-grid-a">
+			<div class="ui-block-a"><strong>Date:</strong> Tomorrow 10/29/12</div>
+			<div class="ui-block-b"><strong>Time:</strong> 5:00 PM</div>
+		</div>
+
+    <h2 id = "center"> Event Description: </h2>
+    <h2 id = "center"> RSVP Status: </h2>
+    <div class = "rsvp_status">
+      <a href="#" data-role="button" data-inline="true" data-theme="b" >Going</a>
+      <a href="#" data-role="button" data-inline="true" data-theme="d" >Not Going</a>
+    </div>
+	</div>
+
+	<%= render :partial => "shared/footer", :locals => {:viewing => :find} %>
+</div>
