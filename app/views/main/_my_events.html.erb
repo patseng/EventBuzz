@@ -4,15 +4,17 @@
 		<h1>My Events</h1>
 	</div><!-- /header -->
 
-	<div data-role="content">	
-	  <h2>Today</h2>
-    <% @my_events_today.each do |event| %>
-      <p><%= event.to_s %></p>
-    <% end %>
-    <h2>Tomorrow</h2>
-    <% @my_events_tomorrow.each do |event| %>
-      <p><%= event.to_s %></p>
-    <% end %>
+	<div data-role="content"> 
+		<ul data-role="listview" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="a">
+			<li data-role="list-divider"> Today <span class="ui-li-count">2</span></li>
+    	<% @my_events_today.each do |event| %>
+      	<li> <a href="#"> <%= event.to_s %> </a> </li>
+    	<% end %> 
+    	<li data-role="list-divider">Tomorrow<span class="ui-li-count">1</span></li>
+    	<% @my_events_tomorrow.each do |event| %>
+      	<li> <a href ="#"> <%= event.to_s %> </a> </li>
+    	<% end %>
+    <ul>
 	</div><!-- /content -->
 	
 	<%= render :partial => "shared/footer", :locals => {:viewing => :home} %>
