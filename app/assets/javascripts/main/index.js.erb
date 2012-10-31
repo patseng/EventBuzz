@@ -1,0 +1,70 @@
+$(function() {
+  $('body').prepend('<div id="fb-root"></div>');
+
+   $.ajax({
+     url: "//connect.facebook.net/en_US/all.js",
+     dataType: 'script',
+     cache: true
+   });
+
+   window.fbAsyncInit = function() {  
+     FB.init({
+       appId: "<%= APP_CONFIG['fb_app_id'] %>",
+       cookie: true,
+       status: true,
+       xfbml: true
+     });
+
+     function facebook_login() {
+       FB.login(function(response) {
+         // redirect
+         if (response.authResponse) {
+           window.location = '/auth/facebook/callback';
+         }
+       }, { scope: 'email' });
+     }
+     
+     
+     $('#sign_in').click(function(e) {
+       e.preventDefault();
+       facebook_login();
+     });
+
+     $('#sign_out').click(function(e) {
+       FB.getLoginStatus(function(response) {
+         if (response.authResponse) {
+           FB.logout();
+         }
+
+         return true;
+       });
+     });
+   };
+  
+  var mapOptions = {
+    center: new google.maps.LatLng(37.42841, -122.16960),
+    zoom: 15,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  var map = new google.maps.Map(document.getElementById("map_canvas"),
+  mapOptions);
+
+  var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(37.42137,	-122.1719),
+    map: map,
+    title: "Dodgeball Tournament!"
+  });
+  
+  var contentString = '<div id="content">' +
+                        '<h1>Dodgeball Tournament!</h1>' +
+                      '</div';
+                      
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+  
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(map,marker);
+  });
+});

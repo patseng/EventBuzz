@@ -1,3 +1,18 @@
+<% if !current_user %>
+  <div data-role="page" id="event_detail">
+  	<div data-role="header">
+  		<h1>Login</h1>
+  	</div>
+
+  	<div data-role="content">
+  		<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", rel: "external" %>
+  	</div>
+
+  	<%= render :partial => "shared/footer", :locals => {:viewing => :none} %>
+  </div>
+<% end %>
+
+
 <%= render :partial => "my_events" %>
 <%= render :partial => "find" %>
 <%= render :partial => "map" %>

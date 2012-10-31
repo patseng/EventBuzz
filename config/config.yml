@@ -1,0 +1,8 @@
+# for now they are the same
+development:
+  fb_app_id: '402439353158080'
+  fb_app_secret: 'db00522aea8326c7e80219ba5d1b1aae'
+
+production:
+  fb_app_id: '457260847653177'
+  fb_app_secret: '2e55c98e8d8e186fb7bd78a6e1e2fc02'

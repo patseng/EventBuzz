@@ -1,7 +1,13 @@
-<div data-role="page" id="home">
+<div data-role="page" data-add-back-btn="true" id="home">
 
 	<div data-role="header">
 		<h1>My Events</h1>
+		<% if current_user %>
+		  Signed in as <strong><%= current_user.name %></strong>!
+      <%= link_to "Sign out", signout_path, id: "sign_out" %>
+		<% else %>
+  		<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", rel: "external" %>
+		<% end %>
 	</div><!-- /header -->
 
 	<div data-role="content"> 
