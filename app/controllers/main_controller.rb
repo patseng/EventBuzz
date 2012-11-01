@@ -5,5 +5,6 @@ class MainController < ApplicationController
      
     @my_events_today = Event.all
     @my_events_tomorrow = ["Poop Match"]
+    @active_users = User.all
   end
 end
