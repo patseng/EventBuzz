@@ -50,21 +50,26 @@ $(function() {
   var map = new google.maps.Map(document.getElementById("map_canvas"),
   mapOptions);
 
-  var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(37.42137,	-122.1719),
-    map: map,
-    title: "Dodgeball Tournament!"
-  });
-  
-  var contentString = '<div id="content">' +
-                        '<h1>Dodgeball Tournament!</h1>' +
-                      '</div';
-                      
-  var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
-  
-  google.maps.event.addListener(marker, 'click', function() {
-    infowindow.open(map,marker);
-  });
+  var events = gon.events;
+  var numEvents = events.length;
+  for (var i = 0; i < numEvents; i++) {
+    var event = events[i].event;
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(event.latitude,	event.longitude),
+      map: map,
+      title: event.event_title
+    });
+
+    var contentString = '<div id="content">' +
+                          '<h1>' + event.event_title + '</h1>' +
+                        '</div';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+  }
 });

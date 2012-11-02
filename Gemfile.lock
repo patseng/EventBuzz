@@ -50,6 +50,10 @@ GEM
       multi_json (~> 1.0)
     faraday (0.8.1)
       multipart-post (~> 1.1)
+    geocoder (1.0.2)
+    gon (4.0.0)
+      actionpack (>= 2.3.0)
+      json
     hashie (1.2.0)
     hike (1.2.1)
     httpauth (0.1)
@@ -86,6 +90,9 @@ GEM
       omniauth (~> 1.0)
     pg (0.14.1)
     polyglot (0.3.3)
+    rabl (0.7.6)
+      activesupport (>= 2.3.14)
+      multi_json (~> 1.0)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -137,10 +144,13 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
+  geocoder
+  gon
   jquery-rails
   jquery_mobile_rails
   omniauth-facebook
   pg
+  rabl
   rails (= 3.2.1)
   sass-rails (~> 3.2.3)
   sqlite3

@@ -34,6 +34,9 @@ gem 'jquery_mobile_rails'
 gem 'omniauth-facebook'
 gem 'geocoder'
 
+gem 'rabl'
+gem 'gon'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
