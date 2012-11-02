@@ -1,15 +1,24 @@
 <div data-role="page" id="find">
   <div data-role="header">
-    <h1>Event Finding Page</h1>
+    <h1>Find Events</h1>
   </div>
   
-  <div data-role="content">
-    <ul data-role="listview" data-inset="true" data-filter="true">
-      <% @all_events.each do |event| %>
-        <li><a href="#"><%= event.event_title %></a></li>
-      <% end %>
-    </ul>
+  <div data-role="content" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="a">
+      <% @event_categories.each_key do |category| %>
+        <li>
+          <div data-role="collapsible">
+            <h1> <%= category %> </h1>
+            <% cat_event = @event_categories[category] %> 
+            <% cat_event.each do |event| %>
+              <ul data-role= "listview">
+                <% event.each do |listing| %>
+                  <li> <a href= "#"> <%=  listing.event_title %> </a> </li>
+                <% end %>
+              </ul>
+            <% end %>
+          </div>
+        </li>
+      <%end%>
   </div>
-  
   <%= render :partial => "shared/footer", :locals => {:viewing => :find} %>
 </div>
