@@ -7,4 +7,12 @@ class MainController < ApplicationController
     @my_events_tomorrow = ["Poop Match"]
     @active_users = User.all
   end
+
+  def get_event_detail
+  	event = Event.find(params['event'])
+  	@event_title = event.event_title()
+  	@event_time = event.start_datetime()
+  	@location = event.location()
+  	@description = event.description()
+  end
 end
