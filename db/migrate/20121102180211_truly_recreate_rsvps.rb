@@ -1,5 +1,5 @@
-class RecreateRsvps < ActiveRecord::Migration
-  def change
+class TrulyRecreateRsvps < ActiveRecord::Migration
+  def up
     drop_table :rsvps
     create_table :rsvps do |t|
       t.integer :user_id
@@ -7,5 +7,9 @@ class RecreateRsvps < ActiveRecord::Migration
 
       t.timestamps
     end
+  end
+
+  def down
+    drop_table :rsvps
   end
 end
