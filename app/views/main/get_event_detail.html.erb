@@ -4,19 +4,22 @@
 	</div>
 
 	<div data-role="content">
-		<h1 id="event_title">[put event here]</h1>
+		<h1 id="event_title"> 
+      <h2 id = "center"> <%= @event_title%> </h2>
+    </h1>
 		<div class="ui-grid-a">
-			<div class="ui-block-a"><strong>Date:</strong> Tomorrow 10/29/12</div>
-			<div class="ui-block-b"><strong>Time:</strong> 5:00 PM</div>
+			<div class="ui-block-a"><strong>Date:</strong> <%= @event_time %></div>
+			<div class="ui-block-b"><strong>Time:</strong> <%= @event_time %></div>
 		</div>
 
     <h2 id = "center"> Event Description: </h2>
+      <h4 id = "center"> <%= @description %> </h4>
     <h2 id = "center"> RSVP Status: </h2>
     <div class = "rsvp_status">
       <a href="#" data-role="button" data-inline="true" data-theme="b" >Going</a>
       <a href="#" data-role="button" data-inline="true" data-theme="d" >Not Going</a>
     </div>
-	</div>
+  </div>
 
-	<%= render :partial => "shared/footer", :locals => {:viewing => :find} %>
+  <%= render :partial => "shared/footer", :locals => {:viewing => :find} %>
 </div>
