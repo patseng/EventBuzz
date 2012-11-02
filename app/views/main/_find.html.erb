@@ -3,23 +3,22 @@
     <h1>Find Events</h1>
   </div>
   
-  <div data-role="content">
-    <ul data-role="listview" data-inset="true" data-filter="true" date-theme ="d" data-divider-theme="a">
+  <div data-role="content" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="a">
       <% @event_categories.each_key do |category| %>
         <li>
-          <h1> <%= category %> </h1>
-          <ul>
+          <div data-role="collapsible">
+            <h1> <%= category %> </h1>
             <% cat_event = @event_categories[category] %> 
             <% cat_event.each do |event| %>
-            <% event.each do |listing| %>
-            <li> <%=  listing.event_title %> </li>
+              <ul data-role= "listview">
+                <% event.each do |listing| %>
+                  <li> <a href= "#"> <%=  listing.event_title %> </a> </li>
+                <% end %>
+              </ul>
             <% end %>
-            <% end %>
-          </ul>
-          
+          </div>
         </li>
-      <% end %>
-    </ul>
+      <%end%>
   </div>
   <%= render :partial => "shared/footer", :locals => {:viewing => :find} %>
 </div>
