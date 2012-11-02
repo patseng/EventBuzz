@@ -1,0 +1,15 @@
+<div data-role="page">
+	<div data-role="header">
+		<h1>Admin Page</h1>
+	</div>
+
+	<div data-role="content">
+	  <%= form_for @event, :url => { :action => 'create' }, :html => {:'data-ajax' => false } do |f| %>
+      <%= f.label :event_title %>
+      <%= f.text_field :event_title %>
+      <%= f.label :location %>
+      <%= f.text_field :location %>
+      <%= f.submit %>
+	  <% end %>
+	</div>
+</div>

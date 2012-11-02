@@ -14,11 +14,11 @@
 		<ul data-role="listview" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="a">
 			<li data-role="list-divider"> Today <span class="ui-li-count">2</span></li>
     		<% @my_events_today.each do |event| %>
-      			<li> <a href= <%="/event_detail?event=#{event.id}" %> > <%= event.event_title %> </a> </li>
+      		<li> <a href= <%="/event_detail?event=#{event.id}" %> > <%= event.event_title %> </a> </li>
     		<% end %> 
     		<li data-role="list-divider">Tomorrow<span class="ui-li-count">1</span></li>
     		<% @my_events_tomorrow.each do |event| %>
-      			<li> <a href ="#event_detail"> <%= event.to_s %> </a> </li>
+      		<li> <a href ="#event_detail"> <%= event.to_s %> </a> </li>
     		<% end %>
     <ul>
 	</div><!-- /content -->
