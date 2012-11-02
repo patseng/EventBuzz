@@ -1,5 +1,8 @@
 EventBuzz::Application.routes.draw do
   root :to => 'main#index'
+
+  # admin
+  match "admin/users", to: 'admin#users'
   
   match "admin", to: 'admin#view'
   match 'auth/:provider/callback', to: 'sessions#create'
