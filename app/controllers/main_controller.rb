@@ -7,7 +7,7 @@ class MainController < ApplicationController
     @all_events = Event.all
     @my_events_tomorrow = ["Poop Match"]
     @active_users = User.all
-    @event_categories = {:Sports => [@all_events[0...4]], :Talks => [@all_events[5...9]]}
+    @event_categories = {:Sports => @all_events[0...4], :Talks => @all_events[5...9]}
     
   end
 
