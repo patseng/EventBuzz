@@ -12,7 +12,7 @@
             <% cat_event.each do |event| %>
               <ul data-role= "listview">
                 <% event.each do |listing| %>
-                  <li> <a href= "#"> <%=  listing.event_title %> </a> </li>
+                  <li> <a href= <%="/event_detail?event=#{listing.id}"%> > <%=  listing.event_title %> </a> </li>
                 <% end %>
               </ul>
             <% end %>
