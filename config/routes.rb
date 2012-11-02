@@ -1,7 +1,11 @@
 EventBuzz::Application.routes.draw do
   root :to => 'main#index'
+
+  # admin
+  match "admin/users", to: 'admin#users'
+  resource :events, :only => [:new, :create]
   
-  match "admin", to: 'admin#view'
+  # authentication
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
   match 'signout', to: 'sessions#destroy', as: 'signout'

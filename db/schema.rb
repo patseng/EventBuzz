@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20121102050809) do
     t.datetime "start_datetime"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "rsvps", :force => true do |t|

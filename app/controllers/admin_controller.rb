@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-  def view
+  def users
     @active_users = User.all
   end
 end
