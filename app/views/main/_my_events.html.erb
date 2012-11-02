@@ -12,7 +12,7 @@
 
 	<div data-role="content"> 
 		<ul data-role="listview" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="a">
-			<li data-role="list-divider"> Today <span class="ui-li-count">2</span></li>
+			<li data-role="list-divider"> Today <span class="ui-li-count">9</span></li>
     		<% @my_events_today.each do |event| %>
       		<li> <a href= <%="/event_detail?event=#{event.id}" %> > <%= event.event_title %> </a> </li>
     		<% end %> 
