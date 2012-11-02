@@ -50,6 +50,10 @@ $(function() {
   var map = new google.maps.Map(document.getElementById("map_canvas"),
   mapOptions);
 
+  var infowindow = new google.maps.InfoWindow({
+    content: "placeholder"
+  });
+  
   var events = gon.events;
   var numEvents = events.length;
   for (var i = 0; i < numEvents; i++) {
@@ -59,17 +63,15 @@ $(function() {
       map: map,
       title: event.event_title
     });
-
-    var contentString = '<div id="content">' +
-                          '<h1>' + event.event_title + '</h1>' +
-                        '</div';
-
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
-
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map,marker);
-    });
+    // anonymous closure saves the event and marker in the local scope 
+    (function(marker, event) {
+      google.maps.event.addListener(marker, 'click', function() {
+        var contentString = '<div id="content">' +
+                              '<p>' + event.event_title + '<a href="/event_detail?event=' + event.id + '"> details </a>' +  '</p>' +
+                            '</div';
+        infowindow.setContent(contentString);
+        infowindow.open(map,this);
+      });
+    })(marker, event);
   }
 });
