@@ -5,8 +5,8 @@
   
   <div data-role="content">
     <ul data-role="listview" data-inset="true" data-filter="true">
-      <% @events.each do |event| %>
-        <li><a href="#event_detail"><%= event %></a></li>
+      <% @all_events.each do |event| %>
+        <li><a href="#"><%= event.event_title %></a></li>
       <% end %>
     </ul>
   </div>
