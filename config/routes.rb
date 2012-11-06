@@ -1,6 +1,7 @@
 EventBuzz::Application.routes.draw do
   root :to => 'main#index'
 
+  resource :rsvps, :only => [:create, :destroy]
   # admin
   match "admin/users", to: 'admin#users'
   resource :events, :only => [:new, :create]
