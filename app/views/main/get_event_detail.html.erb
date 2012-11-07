@@ -17,9 +17,10 @@
     <h4 id = "center"> <%= @description %> </h4>
     <h2 id = "center"> RSVP Status: </h2>
     <div class = "rsvp_status">
-      <a href="#" data-role="button" data-inline="true" data-theme="b" id="going">Going</a>
-      <a href="#" data-role="button" data-inline="true" data-theme="d" id="not_going">Not Going</a>
+      <a href="#" data-icon="plus" data-role="button" data-inline="true" data-theme="b" id="going">Going</a>
+      <a href="#" data-icon = "minus" data-role="button" data-inline="true" data-theme="d" id="not_going">Not Going</a>
     </div>
+
   </div>
 
   <%= render :partial => "shared/footer", :locals => {:viewing => :find} %>
