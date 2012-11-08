@@ -1,40 +1,29 @@
 <div data-role="page" data-add-back-btn="true" id="home">
 
-	<div data-role="header">
-		<h1>My Events</h1>
-		<% if current_user %>
-		  Signed in as <strong><%= current_user.name %></strong>!
-      <%= link_to "Sign out", signout_path, id: "sign_out" %>
-		<% else %>
-  		<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", rel: "external" %>
-		<% end %>
-	</div><!-- /header -->
+	<%= render :partial => "shared/header", :locals => {:viewing => "My Events"} %>
 
   <div data-role="content"> 
   <% if !current_user %>
     <h1>You need to sign in to view your events sillyhead!</h1>
 	  <%= link_to "To Get Started Sign in with Facebook", "/auth/facebook", id: "sign_in", rel: "external" %>
   <% else %>
-  		<ul data-role="listview" id = "event_list" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="a">
-  			<li data-role="list-divider"> Today <span class="ui-li-count"><%= @my_events_today.count %></span></li>
-      		<% @my_events_today.each do |event| %>
-        		<li><a href= <%="/event_detail?event=#{event.id}"%>>
-        		  <h1>
-        		    <%= event.event_title %>
-        		  </h1>
-        		  <% debugger %>
-        		  <p>Friends going: <%= current_user.friends_going(event).count %></p>
+  	<ul data-role="listview" id = "event_list" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="a">
+  		<li data-role="list-divider"> Today <span class="ui-li-count"><%= @my_events_today.count %></span></li>
+      	<% @my_events_today.each do |event| %>
+        	<li><a href= <%="/event_detail?event=#{event.id}"%>>
+        		<h1><%= event.event_title %></h1>
+      		  <p>Friends going: <%= current_user.friends_going(event).count %></p>
+      		</a></li>
+    		<% end %> <!-- /each -->
+    		<% if @my_events_tomorrow %>
+      	  <li data-role="list-divider">Tomorrow<span class="ui-li-count">1</span></li>
+        	<% @my_events_tomorrow.each do |event| %>
+        		<li><a href ="#event_detail"> 
+        		  <h1> <%= event.to_s %></h1>
+        		  <p>Subinfo</p>
         		</a></li>
-      		<% end %> 
-      		<% if @my_events_tomorrow %>
-      		  <li data-role="list-divider">Tomorrow<span class="ui-li-count">1</span></li>
-        		<% @my_events_tomorrow.each do |event| %>
-          		<li><a href ="#event_detail"> 
-          		  <h1> <%= event.to_s %></h1>
-          		  <p>Subinfo</p>
-          		</a></li>
-        		<% end %>
-      		<% end %>
+      	  <% end %> <!--  /each --> 
+      	<% end %> <!--  /if -->
       <ul>
   <% end %>
   </div><!-- /content -->

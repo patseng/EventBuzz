@@ -1,7 +1,5 @@
 <div data-role="page" id="find">
-  <div data-role="header">
-    <h1>Find Events</h1>
-  </div>
+  <%= render :partial => "shared/header", :locals => {:viewing => "Find Events"} %>
   
   <div data-role="content" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="a">
       <% @categories.each do |category| %>
