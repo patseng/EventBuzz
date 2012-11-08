@@ -10,7 +10,7 @@ $(function() {
   $(document).on('click', "#not_going", function() {
     var event_id = $('#event_id').val();
     $.ajax({
-      url: "/rsvps/" + event_id,
+      url: "/rsvps." + event_id,
       type: "DELETE"
     });
   });
