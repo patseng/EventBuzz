@@ -6,16 +6,16 @@
 
 	<div data-role="content">
 		<h1 id="event_title"> 
-      <h2 id = "center"> <%= @event_title%> </h2>
+      <h2 class = "centered" id = "title"> <%= @event_title%> </h2>
     </h1>
 		<div class="ui-grid-a">
 			<div class="ui-block-a"><strong>Date:</strong> <%= @event_time %></div>
 			<div class="ui-block-b"><strong>Time:</strong> <%= @event_time %></div>
 		</div>
 
-    <h2 id = "center"> Event Description: </h2>
-    <h4 id = "center"> <%= @description %> </h4>
-    <h2 id = "center"> RSVP Status: </h2>
+    <h2 class = "centered"> Event Description: </h2>
+    <h4 class = "centered"> <%= @description %> </h4>
+    <h2 class = "centered"> RSVP Status: </h2>
     <div class = "rsvp_status">
       <a href="#" data-icon="plus" data-role="button" data-inline="true" data-theme="b" id="going">Going</a>
       <a href="#" data-icon = "minus" data-role="button" data-inline="true" data-theme="d" id="not_going">Not Going</a>
