@@ -6,6 +6,7 @@ class MainController < ApplicationController
     @active_users = User.all
     @categories = Category.all
     gon.rabl "app/views/events/map.json.rabl", as: "events"
+    gon.signed_in = if current_user then true else false end
   end
 
   def get_event_detail
