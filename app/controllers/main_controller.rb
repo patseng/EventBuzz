@@ -4,7 +4,7 @@ class MainController < ApplicationController
     @my_events_today = current_user.events if current_user
     @all_events = Event.all
     @active_users = User.all
-    @event_categories = {:Sports => [@all_events[0...4]], :Talks => [@all_events[5...9]]}
+    @event_categories = {:Sports => @all_events[0...4], :Talks => @all_events[5...9]}
     gon.rabl "app/views/events/map.json.rabl", as: "events"
   end
 
