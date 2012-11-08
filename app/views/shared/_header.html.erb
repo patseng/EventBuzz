@@ -3,3 +3,13 @@
 <!-- You will likely want to pass a parameter to this view -->
 <!-- Check out how the footer partial is used (it passes parameters  -->
 <!-- by telling the view what its local variable are)  -->
+
+<div data-role= "header" data-theme = "a" data-position = "fixed">
+	<h1> <%= viewing %> </h1>
+		<% if current_user %>
+		  Signed in as <strong><%= current_user.name %></strong>!
+      <%= link_to "Sign out", signout_path, id: "sign_out" %>
+		<% else %>
+  		<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", rel: "external",:'data-theme' => "b" %>
+		<% end %>
+</div>
