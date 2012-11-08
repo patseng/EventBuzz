@@ -26,7 +26,15 @@
         <% end %>
       </div>
 
-      <a href="#" data-icon = "minus" data-role="button" data-inline="true" data-theme="d" id="not_going">Not Going</a>
+      <a href="#not_attending" data-icon = "minus" data-role="button" data-inline="true" data-theme="d" data-rel ="popup" data-position-to= "window" id="not_going">Not Going</a>
+      <div data-role="popup" id="not_attending"> 
+        <% if current_user %>
+          <p> That's for letting us know you aren't coming.  You can change your mind at any point :) <p>
+        <% else %>
+          <p> Please sign in :)<p>
+        <% end %>
+      </div>
+      
     </div>
 
   </div>
