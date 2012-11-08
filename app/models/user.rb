@@ -12,11 +12,8 @@ class User < ActiveRecord::Base
   end
 
   def friends_going(event)
-    @friends_going ||= self.friends.select do |friend|
+    self.friends.select do |friend|
       user = User.find_by_uid(friend['id'])
-      if user
-        puts user.name
-      end
       user and event.users.include? user
     end
   end
