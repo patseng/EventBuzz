@@ -15,5 +15,6 @@ class MainController < ApplicationController
   	@event_time = @event.start_datetime()
   	@location = @event.location()
   	@description = @event.description()
+  	@friends_going = current_user.friends_going(@event)
   end
 end

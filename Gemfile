@@ -32,6 +32,7 @@ end
 gem 'jquery-rails'
 gem 'jquery_mobile_rails'
 gem 'omniauth-facebook'
+gem 'koala'
 gem 'geocoder'
 
 gem 'rabl'

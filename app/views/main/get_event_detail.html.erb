@@ -35,6 +35,20 @@
         <% end %>
       </div>
       
+      <% if current_user %>
+          <% if @friends_going.empty? %>
+            <li>None of your friends have rsvped to this event yet</p>
+          <% else %>
+            <h2>Friends going:</h1>
+            <ul>
+            <% @friends_going.each do |friend| %>
+              <li><%= friend["name"] %></li>
+            <% end %>
+            </ul>
+          <% end %>
+        
+      <% end %>
+      
     </div>
 
   </div>
