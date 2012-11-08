@@ -10,7 +10,7 @@
         Category.destroy_all
 
 		Event.create([{:event_title =>"Obama talk", :start_datetime => "2012-11-01", :end_datetime => "2012-11-01", 
-                    :location => "CEMEX, Stanford", :description => "Obama is talksing about his reelection campaign"}, 
+                    :location => "CEMEX, Stanford", :description => "Obama is talking about his reelection campaign"}, 
 					       
 					       {:event_title => "Dodgeball Tournament", :start_datetime => "2012-11-02", :end_datetime => "2012-11-02", 
                     :location => "TDX, Stanford", :description => "TDX is hosting a charity dodgeball tournament" }, 
