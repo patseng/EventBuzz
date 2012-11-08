@@ -1,0 +1,7 @@
+$(function() {
+  $(document).on('click', "#going", function() {
+    $('#event_list').append('<li> <a href=' + window.location.href + '>'+ $('#title').html() + '</a> </li>');
+    $("#event_list").listview("refresh");
+  });
+});
+
