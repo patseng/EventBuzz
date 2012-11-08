@@ -4,13 +4,12 @@
   </div>
   
   <div data-role="content" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="a">
-      <% @event_categories.each_key do |category| %>
+      <% @categories.each do |category| %>
         <li>
           <div data-role="collapsible">
-            <h1> <%= category %> </h1>
-            <% cat_event = @event_categories[category] %> 
+            <h1> <%= category.name %> </h1>
             <ul data-role= "listview">
-              <% cat_event.each do |event| %>
+              <% category.events.each do |event| %>
                 <li> <a href= <%="/event_detail?event=#{event.id}"%> > <%=  event.event_title %> </a> </li>
               <% end %>
             </ul>
