@@ -3,5 +3,14 @@ $(function() {
     $('#event_list').append('<li> <a href=' + window.location.href + '>'+ $('#title').html() + '</a> </li>');
     $("#event_list").listview("refresh");
   });
-});
 
+  $(document).on('click', "#not_going", function() {
+    var event_title = $.trim($('#title').text());
+    $('#event_list').children().each(function(index) {
+      var title = $.trim($(this).text());
+      if(event_title == title) {
+        $(this).remove();
+      }      
+    });
+  });
+});
