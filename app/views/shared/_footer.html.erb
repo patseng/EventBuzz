@@ -1,14 +1,14 @@
-<div data-role="footer" data-position="fixed" data-id="samefooter">
+<div data-role="footer" data-theme = "a" data-position="fixed" data-id="samefooter">
 	<div data-role="navbar">
 		<ul>
 			<li>
-			  <a href="#home" data-icon="custom" class="<%= 'ui-btn-active' if viewing == :home %>">My Events</a>
+			  <a href="#home" data-icon="star" class="<%= 'ui-btn-active' if viewing == :home %>">My Events</a>
 			</li>
 			<li>
-			  <a href="#map" data-icon="custom" class="<%= 'ui-btn-active' if viewing == :map %>">Map</a>
+			  <a href="#map" data-icon="grid" class="<%= 'ui-btn-active' if viewing == :map %>">Map</a>
 			</li>
 			<li>
-			  <a href="#find" data-icon="custom" class="<%= 'ui-btn-active' if viewing == :find %>">Find</a>
+			  <a href="#find" data-icon="search" class="<%= 'ui-btn-active' if viewing == :find %>">Find</a>
 			</li>
 		</ul>
 	</div>
