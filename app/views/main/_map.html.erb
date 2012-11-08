@@ -1,7 +1,5 @@
 <div data-role="page" id="map">
-	<div data-role="header">
-		<h1>Map View for EventBuzz</h1>
-	</div><!-- /header -->
+	<%= render :partial => "shared/header", :locals => {:viewing => "Map"} %>
 
 	<div data-role="content" id="map_container">	
     <div id="map_canvas"></div>
