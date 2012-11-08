@@ -54,7 +54,7 @@
                             {:event_id => obama_talk.id,  :category_id => politics.id}, {:event_id => dodgeball_tournament.id, :category_id => featured.id},
                             {:event_id => dodgeball_tournament.id, :category_id => sports.id}, {:event_id => tennis_match.id, :category_id => sports.id},
                             {:event_id => basketball_game.id, :category_id => sports.id},{:event_id => romney_talk.id, :category_id => talks.id},
-                            {:event_id => romney_talk.id, :category_id => politics.id}, {:event_id => romney_talk.id, :category_id => politics.id},
+                            {:event_id => romney_talk.id, :category_id => featured.id}, {:event_id => romney_talk.id, :category_id => politics.id},
                             {:event_id => cs_career_fair.id, :category_id => featured.id}, {:event_id => cs_career_fair.id, :category_id => jobs.id},
                             {:event_id => big_game.id, :category_id => sports.id}, {:event_id => big_game.id, :category_id => featured.id}])
 
