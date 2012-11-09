@@ -3,14 +3,6 @@ class User < ActiveRecord::Base
   has_many :rsvps
   has_many :events, :through => :rsvps
 
-  def token_expired?(new_time = nil)
-    expiry = (new_time.nil? ? token_expires_at : Time.at(new_time))
-    return true if expiry < Time.now ## expired token, so we should quickly return
-    token_expires_at = expiry
-    save if changed?
-    false # token not expired. :D
-  end
-
   # rescue error
   def facebook
     @facebook ||= Koala::Facebook::API.new(self.oauth_token)

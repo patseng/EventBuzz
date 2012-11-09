@@ -1,13 +1,4 @@
 class MainController < ApplicationController
-  before_filter :check_expiration_tokens
-  
-  def check_expiration_tokens
-    if current_user && current_user.token_expired?(current_user.oauth_expires_at)
-      session[:user_id] = nil
-      current_user = nil
-    end
-  end
-  
   def index
     @my_events_today = []
     @my_events_today = current_user.events if current_user
