@@ -5,25 +5,18 @@ class User < ActiveRecord::Base
 
   # rescue error
   def facebook
-    begin
-      @facebook ||= Koala::Facebook::API.new(self.oauth_token)
-    rescue
-      @facebook = nil
-    end
+    @facebook ||= Koala::Facebook::API.new(self.oauth_token)
   end
 
   def friends
-    @friends ||= self.facebook.get_connection("me", "friends") if self.facebook
+    @friends ||= self.facebook.get_connection("me", "friends")
   end
 
   def friends_going(event)
-    if self.friends
-      self.friends.select do |friend|
-        user = User.find_by_uid(friend['id'])
-        user and event.users.include? user
-      end
+    self.friends.select do |friend|
+      user = User.find_by_uid(friend['id'])
+      user and event.users.include? user
     end
-    []
   end
 
   def self.from_omniauth(auth)
