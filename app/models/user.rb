@@ -4,18 +4,25 @@ class User < ActiveRecord::Base
   has_many :events, :through => :rsvps
 
   def facebook
-    @facebook ||= Koala::Facebook::API.new(self.oauth_token)
+    begin
+      @facebook ||= Koala::Facebook::API.new(self.oauth_token)
+    rescue
+      @facebook = nil
+    end
   end
 
   def friends
-    @friends ||= self.facebook.get_connection("me", "friends")
+    @friends ||= self.facebook.get_connection("me", "friends") if self.facebook
   end
 
   def friends_going(event)
-    self.friends.select do |friend|
-      user = User.find_by_uid(friend['id'])
-      user and event.users.include? user
+    if self.friends
+      self.friends.select do |friend|
+        user = User.find_by_uid(friend['id'])
+        user and event.users.include? user
+      end
     end
+    []
   end
 
   def self.from_omniauth(auth)
