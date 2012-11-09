@@ -8,8 +8,8 @@ $(function() {
     var event_title = $.trim($('#title').text());
     $('#event_list').children().each(function(index) {
       var title = $.trim($(this).text());
-      if(event_title == title) {
-        $(this).remove();
+      if(title.indexOf(event_title) != -1) {
+        $(this).empty();
       }      
     });
   });
