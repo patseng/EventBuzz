@@ -6,7 +6,12 @@
   </div>
 <% end %>
 
+<% if current_user and !current_user.finished_tutorial? %>
+  <%= render :partial => "find" %>  
+  <%= render :partial => "my_events" %>
+<% else %>
+  <%= render :partial => "my_events" %>
+  <%= render :partial => "find" %>
+<% end %>
 
-<%= render :partial => "my_events" %>
-<%= render :partial => "find" %>
 <%= render :partial => "map" %>
