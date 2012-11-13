@@ -1,21 +1,21 @@
 class User < ActiveRecord::Base
-
-  has_many :rsvps
+  has_many :friendships, :dependent => :destroy
+  has_many :friends, :through => :friendships
+  has_many :rsvps, :dependent => :destroy
   has_many :events, :through => :rsvps
 
   # rescue error
   def facebook
-    @facebook ||= Koala::Facebook::API.new(self.oauth_token)
-  end
-
-  def friends
-    @friends ||= self.facebook.get_connection("me", "friends")
+    begin
+      @facebook ||= Koala::Facebook::API.new(self.oauth_token)
+    rescue Koala::Facebook::APIError
+      
+    end
   end
 
   def friends_going(event)
     self.friends.select do |friend|
-      user = User.find_by_uid(friend['id'])
-      user and event.users.include? user
+      event.users.include? friend
     end
   end
 
@@ -28,6 +28,18 @@ class User < ActiveRecord::Base
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.email = auth.info.email
       user.location = auth.info.location
+      
+      if user.new_record?
+        fb_friends = user.facebook.get_connection("me", "friends")
+        fb_friends.each do |fb_friend|
+          friend = User.find_by_uid(fb_friend['id'])
+          if friend
+            user.save!
+            user.friendships.create(:friend_id => friend.id)
+            Friendship.create(:user_id => friend.id, :friend_id => user.id)
+          end
+        end
+      end
       user.save!
     end
   end
