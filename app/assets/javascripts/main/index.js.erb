@@ -25,7 +25,7 @@ $(function() {
      }
      
      
-     $('#sign_in').click(function(e) {
+    $(document).on('click', "#sign_in", function(e) {
        e.preventDefault();
        facebook_login();
      });
