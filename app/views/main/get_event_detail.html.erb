@@ -34,8 +34,9 @@
           <p> Please sign in :)<p>
         <% end %>
       </div>
-      
+
       <% if current_user %>
+			<%= hidden_field_tag(:num_friends, @friends_going.size) %>
           <% if @friends_going.empty? %>
             <li>None of your friends have rsvped to this event yet</p>
           <% else %>

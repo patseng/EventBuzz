@@ -1,6 +1,7 @@
 $(function() {
   $(document).on('click', "#going", function() {
-    $('#event_list').append('<li> <a href=' + window.location.href + '>'+ $('#title').html() + '</a> </li>');
+    $('#event_list').append('<li> <a href= ' + window.location.href + '> <h1>'+ $('#title').html() + 
+      '</h1> <p>Friends going: ' + $('num_friends').val() + '</p> </a> </li>');
     $("#event_list").listview("refresh");
   });
 
