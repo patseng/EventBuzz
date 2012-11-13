@@ -1,14 +1,8 @@
 
 <% if !current_user %>
   <div data-role="page">
-    <%= render :partial => "shared/header", :locals => {:viewing => "Welcome to EventBuzz"} %>
-  	<div data-role="content">
-  		<h1>Welcome to EventBuzz!</h1>
-  		<h2>Find Cool Events And See What Events Your Friends Are Attending!</h2>
-      <h3>Please Sign in with Facebook in the top left corner to save your events! </h3>
-  	</div>
-
-  	<%= render :partial => "shared/footer", :locals => {:viewing => :none} %>
+    <%= image_tag "SignUp.jpg" %>
+    <%= image_tag "FacebookButton.png", id: "sign_in" %>
   </div>
 <% end %>
 
