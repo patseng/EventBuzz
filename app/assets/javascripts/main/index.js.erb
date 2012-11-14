@@ -76,22 +76,25 @@ $(function() {
     })(marker, event);
   }
   
-  // current location
-  function success(position) {
-    var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    var current_location = new google.maps.Marker({
-      position: latlng,
-      map: map,
-      title: "You are here!"
-    });
-  }
-  
-  function failure(msg) {
-    console.log(msg);
-  }
-  if (navigator.geolocation) {
-    debugger
-    navigator.geolocation.getCurrentPosition(success, failure);
-  }
+  $('#locate_me').click(function() {
+    // current location
+    function success(position) {
+      var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      var current_location = new google.maps.Marker({
+        position: latlng,
+        map: map,
+        title: "You are here!"
+      });
+    }
+
+    function failure(msg) {
+      console.log(msg);
+    }
+    
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, failure);
+    }
+  });
+
   
 });
