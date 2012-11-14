@@ -7,7 +7,7 @@
     <h1>You need to sign in to view your events sillyhead!</h1>
 	  <%= link_to "To Get Started Sign in with Facebook", "/auth/facebook", id: "sign_in", rel: "external" %>
   <% else %>
-  	<ul data-role="listview" id = "event_list" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="a">
+  	<ul data-role="listview" id = "event_list" data-inset="true" data-filter="true" data-filter-placeholder="Search My Events" data-theme="d" data-divider-theme="a">
   		<li data-role="list-divider"> Today <span class="ui-li-count"><%= @my_events_today.count %></span></li>
       	<% @my_events_today.each do |event| %>
         	<li><a href= <%="/event_detail?event=#{event.id}"%>>
