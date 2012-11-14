@@ -1,7 +1,13 @@
 #map_container {
-  height: 200px;
+  height: 290px;
+  padding:0px;
 }
 
 #map_canvas {
   height:100%;
+}
+
+#locate_me {
+  position:absolute;
+  z-index:10010000;
 }
