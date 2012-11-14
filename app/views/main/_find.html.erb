@@ -1,28 +1,32 @@
 <div data-role="page" id="find">
   <%= render :partial => "shared/header", :locals => {:viewing => "Find Events"} %>
   
-  <div data-role="content" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="a">
+   <div data-role="content" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="a">
+  
       <% if current_user and !current_user.finished_tutorial? %>
-        <p>[Explanation for tutorial goes here]</p>
+        <p>[Explanation for tutorial goes here]</p> 
       <% end %>
+     
       <% @categories.each do |category| %>
-        <li>
-          <div data-role="collapsible">
-            <h1> <%= category.name %> </h1>
-            <ul data-role= "listview">
+        <h1> <%= category.name %> </h1> 
+          <!-- <div data-role="collapsible"> -->
+          <div class = 'iosSlider'>
+          <div class ='slider'>
               <% category.events.each do |event| %>
                 <!-- todo refactor this into a partial -->
-                <li><a href= <%="/event_detail?event=#{event.id}"%>> 
+                <div class ='slide'>
+                <a href= <%="/event_detail?event=#{event.id}"%> data-role = "button"> 
                   <h1><%= event.event_title %></h1>
                   <% if current_user %>
                     <p>Friends going: <%= current_user.friends_going(event).count %></p>
                   <% end %>
-                </a></li>
-              <% end %>
-            </ul>
+                </a>
+              </div>
+              <%end%>
           </div>
-        </li>
+        </div>
       <%end%>
+   
   </div>
   <%= render :partial => "shared/footer", :locals => {:viewing => :find} %>
 </div>
