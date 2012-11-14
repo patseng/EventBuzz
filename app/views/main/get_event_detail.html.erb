@@ -1,24 +1,17 @@
 <div data-role="page" id="event_detail">
   <%= hidden_field_tag :event_id, @event.id %>
-	<div data-role="header">
-		<h1>Event Details</h1>
-	</div>
+	<!-- <div data-role="header"> -->
+		<!-- <h1><%=@event_title %></h1> -->
+	<!-- </div> -->
 
 	<div data-role="content">
-		<h1 id="event_title"> 
-      <h2 class = "centered" id = "title"> <%= @event_title%> </h2>
-    </h1>
-		<div class="ui-grid-a">
-			<div class="ui-block-a"><strong>Date:</strong> <%= @event_time %></div>
-			<div class="ui-block-b"><strong>Time:</strong> <%= @event_time %></div>
-		</div>
-
-    <h2 class = "centered"> Event Description: </h2>
-    <h4 class = "centered"> <%= @description %> </h4>
-    <h2 class = "centered"> RSVP Status: </h2>
-    <div class = "rsvp_status">
-      <a href="#attending" data-icon="plus" data-role="button" data-inline="true" data-theme="b" data-rel ="popup" data-position-to= "window" id="going">Going</a>
+    <h1 id = "title"> <%= @event_title%> </h1>
+		<p id= "description"> <%= @description %> </p>
+   
+	  <div class = "rsvp_status">
+      <a href="#attending" data-corners = "false" data-icon="plus" data-role="button" data-inline="true" data-theme="b" data-rel ="popup" data-position-to= "window" id="going">Going</a>
       <div data-role="popup" id="attending"> 
+				<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
         <% if current_user %>
           <p> You are now attending this event <p>
         <% else %>
@@ -26,7 +19,7 @@
         <% end %>
       </div>
 
-      <a href="#not_attending" data-icon = "minus" data-role="button" data-inline="true" data-theme="d" data-rel ="popup" data-position-to= "window" id="not_going">Not Going</a>
+      <a href="#not_attending"  data-corners = "false" data-icon = "minus" data-role="button" data-inline="true" data-theme="d" data-rel ="popup" data-position-to= 				"window" id="not_going">Not Going</a>
       <div data-role="popup" id="not_attending"> 
         <% if current_user %>
           <p> That's for letting us know you aren't coming.  You can change your mind at any point :) <p>
@@ -34,13 +27,17 @@
           <p> Please sign in :)<p>
         <% end %>
       </div>
+		<div class="ui-grid-a">
+			<div class="ui-block-a" id = "go"> <strong>Date:</strong> <%= @event_time.strftime("%a %b #{@event_time.day.ordinalize}") %></div>
+			<div class="ui-block-b" id = "not"><strong>Time:</strong> <%= @event_time.strftime("%l:%M %P") %></div>
+		</div>
 
       <% if current_user %>
 			<%= hidden_field_tag(:num_friends, @friends_going.size) %>
           <% if @friends_going.empty? %>
-            <li>None of your friends have rsvped to this event yet</p>
+            <li id = "no_friends">None of your friends have rsvped to this event yet</p>
           <% else %>
-            <h2>Friends going:</h1>
+            <h2 id = "friends_going">Friends going:</h2>
             <ul>
             <% @friends_going.each do |friend| %>
               <li><%= friend["name"] %></li>
