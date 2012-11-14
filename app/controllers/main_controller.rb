@@ -16,5 +16,14 @@ class MainController < ApplicationController
   	@location = @event.location()
   	@description = @event.description()
   	@friends_going = current_user.friends_going(@event)
+  	if !request.xhr?
+  	  @my_events_today = []
+      @my_events_today = current_user.events if current_user
+      @all_events = Event.all
+      @active_users = User.all
+      @categories = Category.all
+      gon.rabl "app/views/events/map.json.rabl", as: "events"
+      gon.signed_in = if current_user then true else false end
+	  end
   end
 end

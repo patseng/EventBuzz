@@ -56,3 +56,9 @@
 
   <%= render :partial => "shared/footer", :locals => {:viewing => :find} %>
 </div>
+
+<% if !request.xhr? %>
+  <%= render :partial => "my_events" %>
+  <%= render :partial => "find" %>
+  <%= render :partial => "map" %>
+<% end %>

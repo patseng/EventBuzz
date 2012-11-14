@@ -2,6 +2,9 @@
   <%= render :partial => "shared/header", :locals => {:viewing => "Find Events"} %>
   
   <div data-role="content" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="a">
+      <% if current_user and !current_user.finished_tutorial? %>
+        <p>[Explanation for tutorial goes here]</p>
+      <% end %>
       <% @categories.each do |category| %>
         <li>
           <div data-role="collapsible">
