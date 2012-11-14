@@ -85,6 +85,9 @@ $(function() {
         map: map,
         title: "You are here!"
       });
+      
+      map.setCenter(latlng);
+      map.setZoom(15);
     }
 
     function failure(msg) {
