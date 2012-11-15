@@ -40,6 +40,17 @@ $(function() {
        });
      });
    };
+   
+  var len = gon.my_events.length;
+  var template = $('#tmpl-my-event').html();
+  debugger
+  for (var i = 0; i < len; i++) {
+    
+    $("#event_list").append(Mustache.to_html(template, gon.my_events[i].event));
+  }
+      $("#event_list").listview("refresh");
+  
+
   
   var mapOptions = {
     center: new google.maps.LatLng(37.42841, -122.16960),
@@ -97,7 +108,5 @@ $(function() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success, failure);
     }
-  });
-
-  
+  });  
 });

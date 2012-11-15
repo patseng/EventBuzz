@@ -9,22 +9,7 @@
   <% else %>
   	<ul data-role="listview" id = "event_list" data-inset="true" data-filter="true" data-filter-placeholder="Search My Events" data-theme="d" data-divider-theme="a"> 
   		<li data-role="list-divider"> Today <span class="ui-li-count"><%= @my_events_today.count %></span></li>
-      	<% @my_events_today.each do |event| %>
-        	<li><a href= <%="/event_detail?event=#{event.id}"%>>
-        		<h1><%= event.event_title %></h1>
-      		  <p>Friends going: <%= current_user.friends_going(event).count %></p>
-      		</a></li>
-    		<% end %> <!-- /each -->
-    		<% if @my_events_tomorrow %>
-      	  <li data-role="list-divider">Tomorrow<span class="ui-li-count">1</span></li>
-        	<% @my_events_tomorrow.each do |event| %>
-        		<li><a href ="#event_detail"> 
-        		  <h1> <%= event.to_s %></h1>
-        		  <p>Subinfo</p>
-        		</a></li>
-      	  <% end %> <!--  /each --> 
-      	<% end %> <!--  /if -->
-      <ul>
+    <ul>
   <% end %>
   </div><!-- /content -->
 
