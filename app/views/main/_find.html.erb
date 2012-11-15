@@ -8,15 +8,15 @@
       <% end %>
      
       <% @categories.each do |category| %>
-        <h1> <%= category.name %> </h1> 
+        <h2> <%= category.name %> </h2> 
           <!-- <div data-role="collapsible"> -->
           <div class = 'iosSlider'>
-          <div class ='slider'>
+          <div class ='slider' data-them = "d">
               <% category.events.each do |event| %>
                 <!-- todo refactor this into a partial -->
                 <div class ='slide'>
-                <a href= <%="/event_detail?event=#{event.id}"%> data-role = "button"> 
-                  <h1><%= event.event_title %></h1>
+                <a href= <%="/event_detail?event=#{event.id}"%> data-role = "button" data-theme = "b" data-icon ="info" data-iconpos = "bottom"> 
+                  <p><%= event.event_title %></p>
                   <% if current_user %>
                     <p>Friends going: <%= current_user.friends_going(event).count %></p>
                   <% end %>
