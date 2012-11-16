@@ -4,5 +4,5 @@ development:
   fb_app_secret: 'db00522aea8326c7e80219ba5d1b1aae'
 
 production:
-  fb_app_id: '457260847653177'
-  fb_app_secret: '2e55c98e8d8e186fb7bd78a6e1e2fc02'
+  fb_app_id: '204554519679010'
+  fb_app_secret: '7a6c2d310bbcd330e97b35e23647e9a4'
