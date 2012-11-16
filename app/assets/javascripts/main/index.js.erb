@@ -1,3 +1,9 @@
+Array.prototype.remove = function(from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};
+
 $(function() {
   $('body').prepend('<div id="fb-root"></div>');
 
@@ -41,6 +47,27 @@ $(function() {
      });
    };
   
+  window.updateMyEvents = function() {
+    $("#event_list").html("");
+    $("#event_list").append(Mustache.to_html($('#tmpl-my-events').html()));
+    
+    var len = gon.my_events.length;
+    var template = $('#tmpl-my-event').html();
+    for (var i = 0; i < len; i++) {
+      $("#event_list").append(Mustache.to_html(template, gon.my_events[i]));
+    }
+    
+    $("#my_event_count").html(len);
+    
+    $("#event_list").listview("refresh");
+  };
+
+  try {
+    updateMyEvents();
+  } catch(err) {
+  }
+  
+  
   var mapOptions = {
     center: new google.maps.LatLng(37.42841, -122.16960),
     zoom: 13,
@@ -58,7 +85,7 @@ $(function() {
   var events = gon.events;
   var numEvents = events.length;
   for (var i = 0; i < numEvents; i++) {
-    var event = events[i].event;
+    var event = events[i];
     var marker = new google.maps.Marker({
       position: new google.maps.LatLng(event.latitude,	event.longitude),
       map: map,
@@ -85,6 +112,9 @@ $(function() {
         map: map,
         title: "You are here!"
       });
+      
+      map.setCenter(latlng);
+      map.setZoom(15);
     }
 
     function failure(msg) {
@@ -94,7 +124,7 @@ $(function() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success, failure);
     }
-  });
-
+  });  
   
+
 });
