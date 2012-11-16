@@ -6,3 +6,8 @@
 #map_canvas {
   height:100%;
 }
+
+#locate_me {
+  position:absolute;
+  z-index:10010000;
+}
