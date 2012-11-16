@@ -14,7 +14,7 @@
 	  <div class = "rsvp_status">
       <a href="#attending" data-corners = "false" data-icon="plus" data-role="button" data-inline="true" data-theme="b" data-rel ="popup" data-position-to= "window" id="going">Going</a>
       <div data-role="popup" id="attending"> 
-				<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+				<a href="#" data-rel="back" data-role="button" data-theme="d" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
         <% if current_user %>
           <p> You are now attending this event <p>
         <% else %>
@@ -23,7 +23,8 @@
       </div>
 
       <a href="#not_attending"  data-corners = "false" data-icon = "minus" data-role="button" data-inline="true" data-theme="d" data-rel ="popup" data-position-to= 				"window" id="not_going">Not Going</a>
-      <div data-role="popup" id="not_attending"> 
+      <div data-role="popup" id="not_attending">
+					 <a href="#" data-rel="back" data-role="button" data-theme="d" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
         <% if current_user %>
           <p> That's for letting us know you aren't coming.  You can change your mind at any point :) <p>
         <% else %>
