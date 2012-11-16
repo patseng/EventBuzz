@@ -1,4 +1,7 @@
 <div data-role="page" id="event_detail">
+  <script>
+    gon.event = {event_title: "<%= @event.event_title %>", id: <%= @event.id %>, friends_going: <%= @friends_going.size %> };
+  </script>
   <%= hidden_field_tag :event_id, @event.id %>
 	<!-- <div data-role="header"> -->
 		<!-- <h1><%=@event_title %></h1> -->
