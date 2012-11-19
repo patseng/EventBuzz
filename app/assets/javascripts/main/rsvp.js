@@ -1,5 +1,6 @@
 $(function() {
   $(document).on('click', "#going", function() {
+    mixpanel.track("going");
     if (gon.signed_in) {
       $.ajax({
         url: "/rsvps",
