@@ -60,14 +60,13 @@ $(function() {
     }
     
     $("#my_event_count").html(len);
-    
-    $("#event_list").listview("refresh");
+  
+    try {
+      $("#event_list").listview("refresh");
+    } catch (err) {}
   };
 
-  try {
-    updateMyEvents();
-  } catch(err) {
-  }
+  updateMyEvents();
   
   
   var mapOptions = {
