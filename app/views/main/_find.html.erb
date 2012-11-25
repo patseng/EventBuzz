@@ -15,7 +15,7 @@
               <% category.events.each do |event| %>
                 <!-- todo refactor this into a partial -->
                 <div class ='slide'>
-                <a href= <%="/event_detail?event=#{event.id}"%> data-role = "button" data-theme = "b" data-icon ="info" data-iconpos = "bottom"> 
+                <a href= <%="/event_detail?event=#{event.id}"%> data-role = "button" data-theme = "b" data-icon ="info" data-iconpos = "bottom" class="slider-button"> 
                   <p><%= event.event_title %></p>
                   <% if current_user %>
                     <p>Friends going: <%= current_user.friends_going(event).count %></p>
