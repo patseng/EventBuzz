@@ -15,7 +15,7 @@ $(function() {
 
    window.fbAsyncInit = function() {  
      FB.init({
-       appId: "204554519679010",
+       appId: "457260847653177",
        // uncomment this line when developing
        // appId: "402439353158080",
        cookie: true,
@@ -126,6 +126,19 @@ $(function() {
       navigator.geolocation.getCurrentPosition(success, failure);
     }
   });  
+
+  if ($.mobile.activePage.attr("id") == "find") {
+    $.ajax({
+      url: "find_timestamp"
+    });
+  }
   
+  $(document).on("pageshow", function() {
+    if ($.mobile.activePage.attr("id") == "event_detail") {
+      $.ajax({
+        url: "event_detail_timestamp"
+      });
+    }
+  })
 
 });
