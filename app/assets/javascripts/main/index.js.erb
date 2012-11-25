@@ -15,7 +15,9 @@ $(function() {
 
    window.fbAsyncInit = function() {  
      FB.init({
-       appId: "<%= APP_CONFIG['fb_app_id'] %>",
+       appId: "457260847653177",
+       // uncomment this line when developing
+       // appId: "402439353158080",
        cookie: true,
        status: true,
        xfbml: true
@@ -58,14 +60,13 @@ $(function() {
     }
     
     $("#my_event_count").html(len);
-    
-    $("#event_list").listview("refresh");
+  
+    try {
+      $("#event_list").listview("refresh");
+    } catch (err) {}
   };
 
-  try {
-    updateMyEvents();
-  } catch(err) {
-  }
+  updateMyEvents();
   
   
   var mapOptions = {
