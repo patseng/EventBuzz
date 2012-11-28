@@ -2,9 +2,18 @@
   <%= render :partial => "shared/header", :locals => {:viewing => "Find Events"} %>
   
    <div data-role="content" data-inset="true" data-filter="true" data-theme="d" data-divider-theme="a" >
-  
       <% if current_user and !current_user.finished_tutorial? %>
-        <p>[Explanation for tutorial goes here]</p> 
+        <div id="tutorial" class="ui-body ui-body-b">
+          <h1>Welcome to EventBuzz!</h1>
+          <div data-role="collapsible" data-collapsed="true" data-theme="e">
+            <h3>What is this thing?</h3>
+            <p>EventBuzz helps you find great events that your friends are going to!</p>
+          </div>
+          <div data-role="collapsible" data-collapsed="true" data-theme="e">
+            <h3>How do I get started?</h3>
+            <p> Scroll through the events in different categories and check out ones that pique your interest</p>
+          </div>
+        </div>
       <% end %>
      
       <% @categories.each do |category| %>
