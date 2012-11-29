@@ -6,7 +6,7 @@ class AdminController < ApplicationController
   def data
     @times = []
     TimingTest.all.each do |test|
-      @times << test.detail_timestamp - test.find_timestamp
+      @times << test.detail_timestamp - test.find_timestamp if test.detail_timestamp
     end
   end
 end
