@@ -6,6 +6,8 @@ EventBuzz::Application.routes.draw do
   match "admin/users", to: 'admin#users'
   resource :events, :only => [:new, :create]
   
+  match 'admin/data', to: "admin#data"
+  
   # time tests
   match "find_timestamp", to: 'timing_tests#find_timestamp'
   match 'event_detail_timestamp', to: 'timing_tests#event_detail_timestamp'
