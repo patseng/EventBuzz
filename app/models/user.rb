@@ -28,9 +28,11 @@ class User < ActiveRecord::Base
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.email = auth.info.email
       user.location = auth.info.location
+      if !user.prof_pic_link
+        user.prof_pic_link = user.facebook.get_picture("me")        
+      end
       
       if user.new_record?
-        user.prof_pic_link = user.facebook.get_picture("me")
         fb_friends = user.facebook.get_connection("me", "friends")
         fb_friends.each do |fb_friend|
           friend = User.find_by_uid(fb_friend['id'])
