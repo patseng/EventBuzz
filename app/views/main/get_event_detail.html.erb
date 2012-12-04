@@ -1,14 +1,17 @@
-<div data-role="page" id="event_detail">
+<div data-role="page" id="event_detail" data-add-back-btn="true">
   <script>
     gon.event = {event_title: "<%= @event.event_title %>", id: <%= @event.id %>, friends_going: <%= @friends_going.size %> };
   </script>
   <%= hidden_field_tag :event_id, @event.id %>
-	<!-- <div data-role="header"> -->
-		<!-- <h1><%=@event_title %></h1> -->
-	<!-- </div> -->
+  <%= render :partial => "shared/header", :locals => {:viewing => "Details"} %>
+  <!-- <div data-role="header">
+    <a data-rel="back">Back</a>
+    <h1>Details</h1>
+  </div> -->
+
 
 	<div data-role="content">
-    <h1 id = "title"> <%= @event_title%> </h1>
+    <h1 id = "title"> <%= @event_title %> </h1>
 		<p id= "description"> <%= @description %> </p>
    
 	  <div class = "rsvp_status">
@@ -62,5 +65,4 @@
 <% if !request.xhr? %>
   <%= render :partial => "my_events" %>
   <%= render :partial => "find" %>
-  <%= render :partial => "map" %>
 <% end %>
