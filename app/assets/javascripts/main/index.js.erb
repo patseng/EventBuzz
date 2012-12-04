@@ -49,6 +49,8 @@ $(function() {
      });
    };
   
+  // Event Rendering
+  
   window.updateMyEvents = function() {
     $("#event_list").html("");
     $("#event_list").append(Mustache.to_html($('#tmpl-my-events').html()));
@@ -70,52 +72,52 @@ $(function() {
     updateMyEvents();  
   } catch (err) {}
   
-  function clearMarkers() {
-    if (gon.marker) {
-      gon.marker.setMap(null);
+  function clearOverlay() {
+    if (gon.directionsDisplay) {
+      gon.directionsDisplay.setMap(null);
     }
   }
   
-  function createMarker() {
-    if (gon.event) {
-      google.maps.event.trigger(map, "resize");
-      var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(gon.event.latitude, gon.event.longitude),
-        map: map,
-        title: event.event_title
-      });
+  // Map Functionality
+  function route(origin, destination) {
+    var request = {
+      origin: origin,
+      destination: destination,
+      travelMode: google.maps.DirectionsTravelMode.DRIVING
+    };
+    
+    directionsService.route(request, function(response, status) {
+       if (status == google.maps.DirectionsStatus.OK) {
+         var directionsDisplay = new google.maps.DirectionsRenderer();
+         directionsDisplay.setDirections(response);
+         directionsDisplay.setMap(map);
+         gon.directionsDisplay = directionsDisplay;
+       }
+     });
+  }
+  
+  function addInfoWindow(marker, contentString) {
+    (function(marker, event) {
       google.maps.event.addListener(marker, 'click', function() {
-        var contentString = '<div id="content">' +
-                              '<p>' + gon.event.event_title + '<a href="/event_detail?event=' + gon.event.id + '"> details </a>' +  '</p>' +
-                            '</div';
         infowindow.setContent(contentString);
         infowindow.open(map,this);
-      })
-      map.setCenter(marker.getPosition());      
-      gon.marker = marker;
-      
-      setTimeout(function() {
-        function success(position) {
-          var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-          var current_location = new google.maps.Marker({
-            position: latlng,
-            map: map,
-            title: "You are here!"
-          });
+      });
+    })(marker, contentString);
+  }
+  
+  function createOverlay() {
+    if (gon.event) {
+      google.maps.event.trigger(map, "resize");
+      var destination = new google.maps.LatLng(gon.event.latitude, gon.event.longitude);
 
-          map.setCenter(latlng);
-          map.setZoom(15);
-        }
-
-        function failure(msg) {
-          console.log(msg);
-          alert("failure");
-        }
-
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(success, failure);
-        }
-      }, 5000);
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var origin = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          route(origin, destination);
+        }, function() {
+          alert("Your device does not handle geolocation");
+        });
+      }
     }
   }
   
@@ -126,19 +128,24 @@ $(function() {
       disableDefaultUI: true
     };
     
-    var map = new google.maps.Map(document.getElementById("map_canvas"),
-    mapOptions);
+  var map = new google.maps.Map(document.getElementById("map_canvas"),
+  mapOptions);
+
+  var directionsService = new google.maps.DirectionsService();
+  
+  var infowindow = new google.maps.InfoWindow({
+    content: "placeholder"
+  });
+  
+  
+  $(document).on("pageshow", function() {
+    if ($.mobile.activePage.attr("id") == "map") {
+     clearOverlay();
+     createOverlay();
+    }
+  });
     
-    var infowindow = new google.maps.InfoWindow({
-      content: "placeholder"
-    });
-    
-    $(document).on("pageshow", function() {
-      if ($.mobile.activePage.attr("id") == "map") {
-       clearMarkers();
-       createMarker();
-      }
-    });
+
     
     // var events = gon.events;
     //     var numEvents = events.length;
@@ -178,6 +185,6 @@ $(function() {
         url: "event_detail_timestamp"
       });
     }
-  })
+  });
 
 });
