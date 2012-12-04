@@ -41,7 +41,8 @@
             <h2 id = "friends_going">Friends going:</h2>
             <ul>
             <% @friends_going.each do |friend| %>
-              <li><%= friend["name"] %></li>
+              <!-- <li><%= friend["name"] %></li> -->
+              <%= image_tag friend.prof_pic_link, :class => "prof_pic" if friend.prof_pic_link %>
             <% end %>
             </ul>
           <% end %>
