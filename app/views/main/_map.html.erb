@@ -1,8 +1,10 @@
 <div data-role="page" id="map">
-	<%= render :partial => "shared/header", :locals => {:viewing => "Events Near You"} %>
+  <div data-role="header">
+    <a data-rel="back">Back</a>
+    <h1>Where?</h1>
+  </div>
 
 	<div data-role="content" id="map_container">	
-	  <a href="#" data-role="button" data-mini="true" id="locate_me">locate me</a>
     <div id="map_canvas"></div>
 	</div><!-- /content -->
 	
