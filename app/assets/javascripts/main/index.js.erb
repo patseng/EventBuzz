@@ -78,12 +78,12 @@ $(function() {
   
   function createMarker() {
     if (gon.event) {
+      google.maps.event.trigger(map, "resize");
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(gon.event.latitude, gon.event.longitude),
         map: map,
         title: event.event_title
       });
-      map.setCenter(marker.getPosition());
       google.maps.event.addListener(marker, 'click', function() {
         var contentString = '<div id="content">' +
                               '<p>' + gon.event.event_title + '<a href="/event_detail?event=' + gon.event.id + '"> details </a>' +  '</p>' +
@@ -91,6 +91,31 @@ $(function() {
         infowindow.setContent(contentString);
         infowindow.open(map,this);
       })
+      map.setCenter(marker.getPosition());      
+      gon.marker = marker;
+      
+      setTimeout(function() {
+        function success(position) {
+          var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+          var current_location = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: "You are here!"
+          });
+
+          map.setCenter(latlng);
+          map.setZoom(15);
+        }
+
+        function failure(msg) {
+          console.log(msg);
+          alert("failure");
+        }
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(success, failure);
+        }
+      }, 5000);
     }
   }
   
@@ -138,26 +163,7 @@ $(function() {
     
     // $('#locate_me').click(function() {
     //   // current location
-    //   function success(position) {
-    //     var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    //     var current_location = new google.maps.Marker({
-    //       position: latlng,
-    //       map: map,
-    //       title: "You are here!"
-    //     });
-    //     
-    //     map.setCenter(latlng);
-    //     map.setZoom(15);
-    //   }
-    // 
-    //   function failure(msg) {
-    //     console.log(msg);
-    //     alert("failure");
-    //   }
-    //   
-    //   if (navigator.geolocation) {
-    //     navigator.geolocation.getCurrentPosition(success, failure);
-    //   }
+
     // });  
 
   if ($.mobile.activePage.attr("id") == "find") {
