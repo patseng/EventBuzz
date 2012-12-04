@@ -7,7 +7,7 @@
 <div data-role= "header" data-theme = "a" data-position = "fixed">
 	<h1> <%= viewing %> </h1>
 		<% if current_user %>
-		  Signed in as <strong><%= current_user.name %></strong>!
+      <%= image_tag current_user.prof_pic_link, :id => "prof_pic" %>
       <%= link_to "Sign out", signout_path, id: "sign_out" %>
 		<% else %>
   		<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", rel: "external",:'data-theme' => "b" %>
