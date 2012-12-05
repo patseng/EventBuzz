@@ -1,35 +1,31 @@
-<div data-role="page" id="event_detail">
+<div data-role="page" id="event_detail" data-add-back-btn="true">
   <script>
-    gon.event = {event_title: "<%= @event.event_title %>", id: <%= @event.id %>, friends_going: <%= @friends_going.size %> };
+    gon.event = {event_title: "<%= @event.event_title %>", 
+                id: <%= @event.id %>, friends_going: <%= @friends_going.size %>,
+                latitude: <%= @event.latitude %>, longitude: <%= @event.longitude %> };
   </script>
   <%= hidden_field_tag :event_id, @event.id %>
-	<!-- <div data-role="header"> -->
-		<!-- <h1><%=@event_title %></h1> -->
-	<!-- </div> -->
+  <div data-role="header">
+    <a data-rel="back">Back</a>
+    <h1>Details</h1>
+  </div>
+
 
 	<div data-role="content">
-    <h1 id = "title"> <%= @event_title%> </h1>
+    <h1 id = "title"> <%= @event_title %> </h1>
 		<p id= "description"> <%= @description %> </p>
    
 	  <div class = "rsvp_status">
-      <a href="#attending" data-corners = "false" data-icon="plus" data-role="button" data-inline="true" data-theme="d" data-rel ="popup" data-position-to= "window" id="going">Going</a>
-      <div data-role="popup" id="attending"> 
-				<a href="#" data-rel="back" data-role="button" data-theme="d" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-        <% if current_user %>
-          <p> You are now attending this event <p>
-        <% else %>
-          <p> Please sign in :)<p>
-        <% end %>
-      </div>
-
-      <a href="#not_attending"  data-corners = "false" data-icon = "minus" data-role="button" data-inline="true" data-theme="d" data-rel ="popup" data-position-to= 				"window" id="not_going">Not Going</a>
-      <div data-role="popup" id="not_attending">
-					 <a href="#" data-rel="back" data-role="button" data-theme="d" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-        <% if current_user %>
-          <p> That's for letting us know you aren't coming.  You can change your mind at any point :) <p>
-        <% else %>
-          <p> Please sign in :)<p>
-        <% end %>
+      <a href="#attending" data-corners = "false" data-icon="plus" data-role="button" data-inline="true" data-theme="d" id="going">Going</a>
+      <a href="#not_attending"  data-corners="false" data-icon="minus" data-role="button" data-inline="true" data-theme="d" id="not_going">Not Going</a>
+      
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <%= @event.location %>
+        </div>
+        <div class="ui-block-b">
+          <a href="#map" data-corners="false" data-mini="true" data-role="button">See it on a map</a>
+        </div>
       </div>
 		<div class="ui-grid-a">
 			<div class="ui-block-a" id = "go"> <strong>Date:</strong> <%= @event_time.strftime("%a %b #{@event_time.day.ordinalize}") %></div>
@@ -44,7 +40,8 @@
             <h2 id = "friends_going">Friends going:</h2>
             <ul>
             <% @friends_going.each do |friend| %>
-              <li><%= friend["name"] %></li>
+              <!-- <li><%= friend["name"] %></li> -->
+              <%= image_tag friend.prof_pic_link, :class => "prof_pic" if friend.prof_pic_link %>
             <% end %>
             </ul>
           <% end %>
@@ -55,11 +52,10 @@
 
   </div>
 
-  <%= render :partial => "shared/footer", :locals => {:viewing => :find} %>
+  <%= render :partial => "shared/footer", :locals => {:viewing => :none} %>
 </div>
 
 <% if !request.xhr? %>
   <%= render :partial => "my_events" %>
   <%= render :partial => "find" %>
-  <%= render :partial => "map" %>
 <% end %>

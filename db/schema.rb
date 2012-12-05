@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113081511) do
+ActiveRecord::Schema.define(:version => 20121130040502) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(:version => 20121113081511) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "timing_tests", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "find_timestamp"
+    t.datetime "detail_timestamp"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
@@ -63,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20121113081511) do
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
     t.boolean  "finished_tutorial"
+    t.string   "prof_pic_link"
   end
 
 end

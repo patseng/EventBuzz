@@ -9,6 +9,12 @@
       <%= f.text_field :event_title %>
       <%= f.label :location %>
       <%= f.text_field :location %>
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+      <%= f.label :start_datetime %>
+      <%= f.text_field :start_datetime, :value => "12/25/12 15:00"%>
+      <%= f.label :end_datetime %>
+      <%= f.text_field :end_datetime, :value => "12/25/12 19:00" %>
       <%= f.submit %>
 	  <% end %>
 	</div>
