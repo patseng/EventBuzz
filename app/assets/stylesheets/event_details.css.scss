@@ -23,11 +23,11 @@
 }
 
 #going {
-	margin: 0px;
+	margin: 5px;
 }
 
-#not_attending {
-	margin: 0px;
+#not_going {
+	margin: 5px;
 }
 
 #no_friends {
@@ -38,10 +38,20 @@
 	margin: 10px;
 }
 
-.go {
-	margin: 10px;
+#go {
+	margin-top: 5px;
 }
 
-.no {
-	margin: 10px;
+#not {
+	margin-top: 5px;
+}
+
+
+.see_map {
+	margin: 5px;
+}
+
+#location {
+	text-align: center;
+	margin: 7px;
 }
