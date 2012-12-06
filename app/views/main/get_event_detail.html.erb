@@ -17,21 +17,24 @@
    
 	  <div class = "rsvp_status">
       <a href="#attending" data-corners = "false" data-icon="plus" data-role="button" data-inline="true" data-theme="d" id="going">Going</a>
-
       <a href="#not_attending"  data-corners="false" data-icon="minus" data-role="button" data-inline="true" data-theme="d" id="not_going">Not Going</a>
-      
+				
       <div class="ui-grid-a">
-        <div class="ui-block-a">
-          <%= @event.location %>
-        </div>
-        <div class="ui-block-b">
-          <a href="#map" data-corners="false" data-mini="true" data-role="button">See it on a map</a>
-        </div>
+				<div class="ui-block-a" id = "go"> <strong>Date:</strong> <%= @event_time.strftime("%a %b #{@event_time.day.ordinalize}") %></div>
+				<div class="ui-block-b" id = "not"><strong>Time:</strong> <%= @event_time.strftime("%l:%M %P") %></div>
       </div>
-		<div class="ui-grid-a">
-			<div class="ui-block-a" id = "go"> <strong>Date:</strong> <%= @event_time.strftime("%a %b #{@event_time.day.ordinalize}") %></div>
-			<div class="ui-block-b" id = "not"><strong>Time:</strong> <%= @event_time.strftime("%l:%M %P") %></div>
-		</div>
+			
+			<div class="ui-grid-solo">
+      	<div class="ui-block-a" id="location"> <strong>Location:</strong> <%= @event.location %> </div>
+			</div>	
+			
+			<div class="ui-grid-solo">
+      	<div class="ui-block-a"> <a href="#map" id = "see_map" data-corners="false" data-mini="true" data-role="button">Get Directions</a></div>
+			</div>	
+			
+		<!-- <div class="ui-grid-a"> -->
+			
+		<!-- </div> -->
 
       <% if current_user %>
 			<%= hidden_field_tag(:num_friends, @friends_going.size) %>
@@ -41,7 +44,8 @@
             <h2 id = "friends_going">Friends going:</h2>
             <ul>
             <% @friends_going.each do |friend| %>
-              <li><%= friend["name"] %></li>
+              <!-- <li><%= friend["name"] %></li> -->
+              <%= image_tag friend.prof_pic_link, :class => "prof_pic" if friend.prof_pic_link %>
             <% end %>
             </ul>
           <% end %>
